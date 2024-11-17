@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Home from './Home'
 import UserProfileForm from './UserProfileForm'
 import { createBrowserRouter } from 'react-router-dom'
+import UsernameForm from './UsernameForm'
 
 const router= createBrowserRouter(
   [
@@ -18,6 +19,11 @@ const router= createBrowserRouter(
       path: '/editprofile',
       element:
       <UserProfileForm/>
+    },
+    {
+      path: '/updateusernames',
+      element:
+      <UsernameForm/>
     }
   ]
 )

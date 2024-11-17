@@ -1,0 +1,8 @@
+{
+    "/leetcode":{
+        "target":"https://coderme.vercel.app/"
+    },
+    "/gfg":{
+        "target":"https://geeks-for-geeks-api.vercel.app/"
+    }
+}
