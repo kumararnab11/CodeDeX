@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 // Default Data
 const defaultData = {
@@ -9,7 +10,6 @@ const defaultData = {
   codechef: { name: 'CodeChef', username: 'N/A', rating: '0', maxrating: '0', badge: 'N/A', countryRank: '0' },
 };
 
-// Load saved data from localStorage or use default data
 const savedData = (() => {
   try {
     const data = JSON.parse(localStorage.getItem('platform'));
@@ -21,30 +21,41 @@ const savedData = (() => {
 
 // Async thunk to fetch data for all platforms
 export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', async () => {
-  const updatedData = { ...savedData };
+  const localStorageData = (() => {
+    try {
+      const data = JSON.parse(localStorage.getItem('platform'));
+      return data || defaultData;
+    } catch {
+      return defaultData;
+    }
+  })();
+
+  const updatedData = { ...localStorageData };
+  console.log('local', JSON.parse(localStorage.getItem('platform')));
+  console.log('savedData', localStorageData);
+  console.log('updatedData', updatedData);
 
   const fetches = [];
-  if (savedData.leetcode.username !== 'N/A') {
+  if (localStorageData.leetcode.username !== 'N/A') {
     fetches.push(
-      axios.get(`/leetcode/${savedData.leetcode.username}`).then((res) => ({ key: 'leetcode', data: res.data }))
+      axios.get(`/leetcode/${localStorageData.leetcode.username}`).then((res) => ({ key: 'leetcode', data: res.data }))
     );
   }
-  if (savedData.gfg.username !== 'N/A') {
+  if (localStorageData.gfg.username !== 'N/A') {
     fetches.push(
-      axios.get(`/gfg/${savedData.gfg.username}`).then((res) => ({ key: 'gfg', data: res.data }))
+      axios.get(`/gfg/${localStorageData.gfg.username}`).then((res) => ({ key: 'gfg', data: res.data }))
     );
   }
-  if (savedData.codeforces.username !== 'N/A') {
+  if (localStorageData.codeforces.username !== 'N/A') {
     fetches.push(
-      axios.get(`https://codeforces.com/api/user.info?handles=${savedData.codeforces.username}`).then((res) => ({
-        key: 'codeforces',
-        data: res.data,
-      }))
+      axios
+        .get(`https://codeforces.com/api/user.info?handles=${localStorageData.codeforces.username}`)
+        .then((res) => ({ key: 'codeforces', data: res.data }))
     );
   }
-  if (savedData.codechef.username !== 'N/A') {
+  if (localStorageData.codechef.username !== 'N/A') {
     fetches.push(
-      axios.get(`https://codechef-api.vercel.app/handle/${savedData.codechef.username}`).then((res) => ({
+      axios.get(`https://codechef-api.vercel.app/handle/${localStorageData.codechef.username}`).then((res) => ({
         key: 'codechef',
         data: res.data,
       }))
@@ -53,8 +64,7 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
 
   const responses = await Promise.allSettled(fetches);
 
-  console.log('printing response')
-  console.log(responses);
+  console.log('printing response', responses);
 
   responses.forEach((response) => {
     if (response.status === 'fulfilled') {
@@ -66,7 +76,6 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
           rating: data.rating || updatedData.leetcode.rating,
         };
       } else if (key === 'gfg') {
-        // Validate data.info exists
         const info = data?.info || {};
         updatedData.gfg = {
           ...updatedData.gfg,
@@ -96,9 +105,7 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
     }
   });
 
-  // Save updated data to localStorage
   localStorage.setItem('platform', JSON.stringify(updatedData));
-
   return updatedData;
 });
 
@@ -116,11 +123,12 @@ const platformSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPlatformData.pending, (state) => {
-        state.loading = true; // Mutating draft state
+        state.loading = true;
       })
       .addCase(fetchPlatformData.fulfilled, (state, action) => {
         state.loading = false;
-        Object.assign(state, action.payload); // Merging fetched data with current state
+        console.log('fetch successful');
+        Object.assign(state, action.payload);
       })
       .addCase(fetchPlatformData.rejected, (state, action) => {
         state.loading = false;

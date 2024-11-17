@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePlatform } from './redux/platformSlice'; 
+import { fetchPlatformData, updatePlatform } from './redux/platformSlice'; 
+import { useNavigate } from 'react-router-dom';
 
 const PlatformForm = () => {
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   const platformData = useSelector((state) => state.platform);
 
@@ -37,6 +39,8 @@ const PlatformForm = () => {
 
     dispatch(updatePlatform(updatedData)); // Dispatch the action with updated data
     alert('Platform data updated successfully!');
+    dispatch(fetchPlatformData())
+    navigate("/")
   };
 
   return (
