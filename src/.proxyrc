@@ -1,8 +1,13 @@
 {
-    "/leetcode":{
-        "target":"https://coderme.vercel.app/"
+    "/leetcode": {
+      "target": "https://coderme.vercel.app/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/leetcode": "" }
     },
-    "/gfg":{
-        "target":"https://geeks-for-geeks-api.vercel.app/"
+    "/gfg": {
+      "target": "https://geeks-for-geeks-api.vercel.app/",
+      "changeOrigin": true,
+      "pathRewrite": { "^/gfg": "" }
     }
-}
+  }
+  

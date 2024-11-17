@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 // Default Data
 const defaultData = {
@@ -41,6 +40,11 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
       axios.get(`/leetcode/${localStorageData.leetcode.username}`).then((res) => ({ key: 'leetcode', data: res.data }))
     );
   }
+  if (localStorageData.leetcode.username !== 'N/A') {
+    fetches.push(
+      axios.get(`https://leetcode-stats-api.herokuapp.com/${localStorageData.leetcode.username}`).then((res) => ({ key: 'leetcode2', data: res.data }))
+    );
+  }
   if (localStorageData.gfg.username !== 'N/A') {
     fetches.push(
       axios.get(`/gfg/${localStorageData.gfg.username}`).then((res) => ({ key: 'gfg', data: res.data }))
@@ -75,7 +79,15 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
           ...updatedData.leetcode,
           rating: data.rating || updatedData.leetcode.rating,
         };
-      } else if (key === 'gfg') {
+      } 
+      else if (key === 'leetcode2') {
+        updatedData.leetcode = {
+          ...updatedData.leetcode,
+          questions: data.totalSolved|| updatedData.leetcode.questions,
+          points: data.contributionPoints || updatedData.leetcode.points,
+        };
+      } 
+      else if (key === 'gfg') {
         const info = data?.info || {};
         updatedData.gfg = {
           ...updatedData.gfg,
@@ -83,7 +95,8 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
           score: info.codingScore || updatedData.gfg.score,
           instituterank: info.instituteRank || updatedData.gfg.instituterank,
         };
-      } else if (key === 'codeforces') {
+      } 
+      else if (key === 'codeforces') {
         updatedData.codeforces = {
           ...updatedData.codeforces,
           rating: data.result[0].rating || updatedData.codeforces.rating,
@@ -91,7 +104,8 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
           badge: data.result[0].rank || updatedData.codeforces.badge,
           maxBadge: data.result[0].maxRank || updatedData.codeforces.maxBadge,
         };
-      } else if (key === 'codechef') {
+      } 
+      else if (key === 'codechef') {
         updatedData.codechef = {
           ...updatedData.codechef,
           rating: data.currentRating || updatedData.codechef.rating,
