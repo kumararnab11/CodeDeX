@@ -8,7 +8,9 @@ const savedProfile = JSON.parse(localStorage.getItem('profile')) || {
   linkedin:'',
   twitter: '',
   language: '',
-  github: ''
+  github: '',
+  nme:'',
+  time:''
 };
 
 const profileSlice = createSlice({
@@ -31,7 +33,8 @@ const profileSlice = createSlice({
         linkedin:'',
         twitter: '',
         language: '',
-        github: ''
+        github: '',
+        nme:'',
       };
       // Clear profile data in localStorage
       localStorage.setItem('profile', JSON.stringify(defaultProfile));

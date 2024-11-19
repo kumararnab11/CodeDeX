@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from './redux/formDataSlice';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfileForm() {
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
 
@@ -19,13 +22,25 @@ function UserProfileForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updateProfile(formData));
-    console.log('Form data saved:', formData);
+    toast.success("User Details Updated");
+    navigate("/")
   };
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-md">
       <h2 className="text-2xl font-semibold text-center mb-4 text-gray-800">User Profile Form</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-gray-700">Name:</label>
+          <input
+            type="text"
+            name="nme"
+            value={formData.nme}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500"
+            required
+          />
+        </div>
         <div>
           <label className="block text-gray-700">Location:</label>
           <input

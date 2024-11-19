@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { IoLocationSharp } from "react-icons/io5";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaGraduationCap } from "react-icons/fa6";
@@ -9,10 +9,31 @@ import { FaGithub } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaIdBadge } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import { updateProfile } from './redux/formDataSlice';
 
 function Profile() {
+  const dispatch=useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.profile); 
+
+  useEffect(() => {
+    const newData = {
+      ...data,
+      time: new Date().toISOString(),
+    };
+    dispatch(updateProfile(newData));
+  }, []);
+
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  });
   
   return (
     <div className="w-[25%] p-4 m-2 bg-white rounded-lg shadow-lg border">
@@ -23,9 +44,9 @@ function Profile() {
           alt="Profile"
           className="w-20 h-20 rounded-full border-2 border-gray-300"
         />
-        <h2 className="mt-2 text-xl font-semibold">{data.name || 'Arnab Kumar'}</h2> {/* Display name from Redux */}
-        <a href="#" className="text-blue-500 text-sm">{data.username || '@9cYFubNP'}</a> {/* Display username from Redux */}
-        <p className="text-gray-500 text-xs mt-1">Last Refreshed at: {data.lastRefreshed || '14-11-2024 11:57:22'}</p> {/* Display last refreshed */}
+        <h2 className="mt-2 text-xl font-semibold">{data.nme || 'Annoymous'}</h2>
+        <a href="#" className="text-blue-500 text-sm">{data.username || '@9cYFubNP'}</a>
+        <p className="text-gray-500 text-xs mt-1">Last Refreshed at: {formatter.format(new Date(data.time)) || '14-11-2024 11:57:22'}</p> {/* Display last refreshed */}
       </div>
 
       {/* Edit Profile Button */}

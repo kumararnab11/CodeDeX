@@ -4,6 +4,7 @@ import Home from './Home'
 import UserProfileForm from './UserProfileForm'
 import { createBrowserRouter } from 'react-router-dom'
 import UsernameForm from './UsernameForm'
+import AppDrawer from './AppDrawer'
 
 const router= createBrowserRouter(
   [
@@ -13,6 +14,14 @@ const router= createBrowserRouter(
       <div>
         <Navbar/>
         <Home/>
+      </div>
+    },
+    {
+      path: '/d',
+      element:
+      <div>
+        <Navbar/>
+        <AppDrawer/>
       </div>
     },
     {
