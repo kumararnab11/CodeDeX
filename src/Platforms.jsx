@@ -15,7 +15,6 @@ function Platforms() {
   const handleRefresh = () => {
     console.log('Dispatching fetchPlatformData...');
     dispatch(fetchPlatformData()).then((action) => {
-      // Log action result after dispatch
       console.log('Fetched platform data:', action);
     }).catch((err) => {
       console.error('Error fetching platform data:', err);

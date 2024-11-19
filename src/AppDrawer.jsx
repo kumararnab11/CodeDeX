@@ -1,37 +1,30 @@
-import React from 'react'
+import React from "react";
 import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-  } from "@/components/ui/drawer"
-  import { Button } from "@/components/ui/button"
-  
-function AppDrawer() {
-  return (
-    <div>
-      <Drawer>
-        <DrawerTrigger>Open</DrawerTrigger>
-        <DrawerContent>
-            <DrawerHeader>
-            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-            <DrawerDescription>This action cannot be undone.</DrawerDescription>
-            </DrawerHeader>
-            <DrawerFooter>
-            <Button>Submit</Button>
-            <DrawerClose>
-                <Button variant="outline">Cancel</Button>
-            </DrawerClose>
-            </DrawerFooter>
-        </DrawerContent>
-        </Drawer>
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import { Button } from "@/components/ui/button";
 
-    </div>
-  )
+function AppDrawer({ open, onClose, title, description, children }) {
+  return (
+    <Drawer open={open} onOpenChange={onClose}>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>{title}</DrawerTitle>
+          <DrawerDescription>{description}</DrawerDescription>
+        </DrawerHeader>
+        <div className="p-4">{children}</div>
+        <DrawerFooter>
+          <Button onClick={onClose}>Close</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
 }
 
-export default AppDrawer
+export default AppDrawer;
