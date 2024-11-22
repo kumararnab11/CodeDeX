@@ -1,24 +1,12 @@
 import React, { useState } from "react";
-import Slidebar from "./Slidebar";
-import { Button } from "./components/ui/button";
+import logo from './assets/logo.jpeg';
 
 function Navbar() {
   const [isSlidebarOpen, setSlidebarOpen] = useState(false);
 
   return (
-    <div>
-      {/* Navbar */}
-      <div className="flex justify-end p-4 bg-gray-100">
-        <Button
-          className="bg-orange-500 text-white text-sm font-medium py-2 px-4 rounded hover:bg-orange-600 transition"
-          onClick={() => setSlidebarOpen(true)}
-        >
-          Quick Links
-        </Button>
-      </div>
-
-      {/* Slidebar */}
-      <Slidebar isOpen={isSlidebarOpen} onClose={() => setSlidebarOpen(false)} />
+    <div className="bg-gray-400">
+      <img src={logo} alt="Logo" className="h-14 w-40 p-2" />
     </div>
   );
 }

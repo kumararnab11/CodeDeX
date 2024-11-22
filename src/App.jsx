@@ -5,15 +5,22 @@ import UserProfileForm from './UserProfileForm'
 import { createBrowserRouter } from 'react-router-dom'
 import UsernameForm from './UsernameForm'
 import AppDrawer from './AppDrawer'
+import SidebarContents from './SidebarContents'
 
 const router= createBrowserRouter(
   [
     {
       path: '/',
       element:
-      <div>
-        <Navbar/>
-        <Home/>
+      <div className="flex h-screen">  {/* This container takes full height */}
+        {/* Main content */}
+        <div className="flex-1 overflow-y-none">
+          <Navbar />
+          <Home />
+        </div>
+        
+        {/* Sidebar on the right */}
+        <SidebarContents className="ml-auto h-screen" /> {/* Ensure the sidebar takes the full height */}
       </div>
     },
     {
