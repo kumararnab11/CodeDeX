@@ -68,31 +68,31 @@ function Profile() {
       {/* Info Section */}
       <div className="mt-4 space-y-2">
         <div className="flex items-center text-gray-500 text-sm">
-          <IoLocationSharp className="mr-2" />
+          <IoLocationSharp className="mr-2 text-blue-600" />
           <span>{data.location || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <FaGraduationCap className="mr-2" />
+          <FaGraduationCap className="mr-2 text-purple-700" />
           <span>{data.institution || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <HiOutlineMail className="mr-2" />
+          <HiOutlineMail className="mr-2 text-red-700" />
           <span>{data.email || 'kumararnab0342@gmail.com'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <IoLogoLinkedin className="mr-2" />
+          <IoLogoLinkedin className="mr-2 text-blue-600" />
           <span>{data.linkedin || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <FaTwitterSquare className="mr-2" />
+          <FaTwitterSquare className="mr-2 text-blue-500" />
           <span>{data.twitter || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <GrLanguage className="mr-2" />
+          <GrLanguage className="mr-2 text-green-400" />
           <span>{data.language || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <FaGithub className="mr-2" />
+          <FaGithub className="mr-2 text-black" />
           <span>{data.github || 'N/A'}</span>
         </div>
       </div>

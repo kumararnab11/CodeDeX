@@ -23,7 +23,7 @@ function Platforms() {
 
   return (
     <div className="w-[55%] mx-auto p-4">
-      <h2 className="text-center text-2xl font-semibold mb-6">Platforms</h2>
+      <h2 className="text-center text-2xl font-serif font-bold mb-6 text-gray-500" style={{ textShadow: '2px 2px 4px rgba(30, 30, 30, 0.3)' }}>Platforms</h2>
       <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Leetcode */}
         <div className="bg-gradient-to-r from-orange-400 to-orange-600 text-white p-6 rounded-lg shadow-lg">

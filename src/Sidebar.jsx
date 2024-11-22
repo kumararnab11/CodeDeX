@@ -4,7 +4,7 @@ import { useContext, createContext, useState } from "react";
 const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <aside className="h-screen">
@@ -45,9 +45,9 @@ export function SidebarItem({ icon, text, active, alert }) {
       `}
     >
       {/* Ensure icons are upright regardless of the sidebar state */}
-      <span className="transition-all">{icon}</span>
+      <span className="transition-all transform scale-x-[-1]">{icon}</span>
       <span
-        className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}`}
+        className={`overflow-hidden transition-all ${expanded ? "w-36 ml-3" : "w-0"}`}
       >
         {text}
       </span>

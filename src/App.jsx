@@ -12,23 +12,12 @@ const router= createBrowserRouter(
     {
       path: '/',
       element:
-      <div className="flex h-screen">  {/* This container takes full height */}
-        {/* Main content */}
+      <div className="flex h-screen">
         <div className="flex-1 overflow-y-none">
           <Navbar />
-          <Home />
+          <Home />          
         </div>
-        
-        {/* Sidebar on the right */}
-        <SidebarContents className="ml-auto h-screen" /> {/* Ensure the sidebar takes the full height */}
-      </div>
-    },
-    {
-      path: '/d',
-      element:
-      <div>
-        <Navbar/>
-        <AppDrawer/>
+        <SidebarContents className="ml-auto h-screen" />
       </div>
     },
     {

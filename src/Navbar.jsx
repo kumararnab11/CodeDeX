@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import logo from './assets/logo.jpeg';
+import logo from './assets/logo2.png';
 
 function Navbar() {
-  const [isSlidebarOpen, setSlidebarOpen] = useState(false);
-
   return (
-    <div className="bg-gray-400">
-      <img src={logo} alt="Logo" className="h-14 w-40 p-2" />
+    <div className="bg-white mb-2">
+      <img src={logo} alt="Logo" className=" w-40" />
     </div>
   );
 }
