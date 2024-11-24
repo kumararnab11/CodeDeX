@@ -10,36 +10,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from './redux/formDataSlice';
 import AppDrawer from './AppDrawer';
 import Resume from './Resume';
+import Badge from './Badge';
 
 function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.profile);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  useEffect(() => {
-    const newData = {
-      ...data,
-      time: data.time || new Date().toISOString(), // Add a fallback time if not already present
-    };
-    dispatch(updateProfile(newData));
-  }, []);
-
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true,
-  });
-
-  // Validate and parse time
-  const parsedTime = new Date(data.time);
-  const formattedTime = isNaN(parsedTime)
-    ? 'Invalid Date' // Fallback if time is invalid
-    : formatter.format(parsedTime);
+  const [isBadgeOpen, setBadgeClose] = useState(false);
 
   return (
     <div className="w-[25%] p-4 m-2 bg-white rounded-lg shadow-lg border">
@@ -53,7 +31,7 @@ function Profile() {
         <h2 className="mt-2 text-xl font-semibold">{data.nme || 'Anonymous'}</h2>
         <a href="#" className="text-blue-500 text-sm">{data.username || '@9cYFubNP'}</a>
         <p className="text-gray-500 text-xs mt-1">
-          Last Refreshed at: {formattedTime}
+        Last Refreshed at: {new Date().toLocaleDateString()} {new Date().toLocaleTimeString()}
         </p>
       </div>
 
@@ -99,7 +77,9 @@ function Profile() {
 
       {/* Action Buttons */}
       <div className="mt-4 space-y-2">
-        <button className="w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold py-2 rounded flex items-center justify-center">
+        <button className="w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white font-semibold py-2 rounded flex items-center justify-center"
+          onClick={()=>{setBadgeClose(true)}}
+        >
           <span className="flex items-center">
             <span className="mr-2">CodeDeX Badge</span>
             <FaIdBadge className="text-lg" />
@@ -120,6 +100,11 @@ function Profile() {
       >
         <Resume/>
       </AppDrawer>
+      {/* Badge Component */}
+      <Badge
+        openBadge={isBadgeOpen}
+        onCloseBadge={() => setBadgeClose(false)}
+      />
     </div>
   );
 }

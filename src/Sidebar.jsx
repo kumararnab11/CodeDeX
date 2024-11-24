@@ -1,10 +1,16 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 
 const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(
+    ()=>{
+      console.log(expanded);
+    },[expanded]
+  )
 
   return (
     <aside className="h-screen">
@@ -15,7 +21,7 @@ export default function Sidebar({ children }) {
       >
         <div className="p-4 pb-2 flex justify-between items-center">
           <button
-            onClick={() => setExpanded((curr) => !curr)}
+            onClick={() => setExpanded((curr) =>!curr)}
             className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
           >
             {expanded ? <ChevronFirst /> : <ChevronLast />}
@@ -32,11 +38,14 @@ export default function Sidebar({ children }) {
   );
 }
 
-export function SidebarItem({ icon, text, active, alert }) {
+export function SidebarItem({ icon, text, active, alert, link }) {
   const { expanded } = useContext(SidebarContext);
 
   return (
-    <li
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
@@ -71,6 +80,7 @@ export function SidebarItem({ icon, text, active, alert }) {
           {text}
         </div>
       )}
-    </li>
+    </a>
   );
 }
+
