@@ -5,7 +5,7 @@ import axios from 'axios';
 const defaultData = {
   leetcode: { name: 'Leetcode', username: 'N/A', questions: 0, rating: 10, points: '0' },
   gfg: { name: 'gfg', username: 'N/A', questions: '0', score: '0', instituterank: '0' },
-  codeforces: { name: 'CodeForces', username: 'N/A', rating: '0', maxrating: '0', badge: 'N/A', maxBadge: 'N/A' },
+  codeforces: { avatar:'https://via.placeholder.com/80',name: 'CodeForces', username: 'N/A', rating: '0', maxrating: '0', badge: 'N/A', maxBadge: 'N/A' },
   codechef: { name: 'CodeChef', username: 'N/A', rating: '0', maxrating: '0', badge: 'N/A', countryRank: '0' },
 };
 
@@ -99,6 +99,7 @@ export const fetchPlatformData = createAsyncThunk('platform/fetchPlatformData', 
       else if (key === 'codeforces') {
         updatedData.codeforces = {
           ...updatedData.codeforces,
+          avatar:data.result[0].avatar||updatedData.codeforces.avatar,
           rating: data.result[0].rating || updatedData.codeforces.rating,
           maxrating: data.result[0].maxRating || updatedData.codeforces.maxrating,
           badge: data.result[0].rank || updatedData.codeforces.badge,

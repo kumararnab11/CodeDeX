@@ -76,9 +76,10 @@ function Badge({ openBadge, onCloseBadge }) {
         >
           {/* Profile Picture */}
           <img
-            src="https://via.placeholder.com/100" // Replace with your profile pic URL
+            src={platformData.codeforces.avatar} // Replace with your profile pic URL
             alt="Profile"
             className="w-24 h-24 rounded-full"
+            crossOrigin="anonymous"
           />
 
           {/* Info Section */}

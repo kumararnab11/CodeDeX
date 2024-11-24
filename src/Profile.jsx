@@ -16,6 +16,7 @@ function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.profile);
+  const profilePic=JSON.parse(localStorage.getItem('platform')).codeforces.avatar;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isBadgeOpen, setBadgeClose] = useState(false);
 
@@ -24,7 +25,7 @@ function Profile() {
       {/* Profile Picture and Name */}
       <div className="flex flex-col items-center text-center">
         <img
-          src="https://via.placeholder.com/80"
+          src={profilePic || "https://via.placeholder.com/80"}
           alt="Profile"
           className="w-20 h-20 rounded-full border-2 border-gray-300"
         />
