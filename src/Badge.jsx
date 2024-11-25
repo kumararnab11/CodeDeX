@@ -102,7 +102,7 @@ function Badge({ openBadge, onCloseBadge }) {
 
           {/* Info Section */}
           <div className="text-center">
-            <h2 className="text-xl font-bold">{profileData.name || "Anonymous"}</h2>
+            <h2 className="text-xl font-bold">{profileData.nme || "Anonymous"}</h2>
             <p className="text-sm text-gray-600">
               Level: <span className="text-red-500">{level}</span>
             </p>
