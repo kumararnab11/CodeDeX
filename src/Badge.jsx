@@ -1,8 +1,19 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
-import { SiLeetcode, SiCodeforces, SiCodechef, SiGeeksforgeeks } from "react-icons/si";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  SiLeetcode,
+  SiCodeforces,
+  SiCodechef,
+  SiGeeksforgeeks,
+} from "react-icons/si";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import html2pdf from "html2pdf.js"; // Import html2pdf.js
 
 function Badge({ openBadge, onCloseBadge }) {
@@ -37,13 +48,13 @@ function Badge({ openBadge, onCloseBadge }) {
 
   // Links for icons
   const links = {
-    linkedin: "https://linkedin.com",
-    github: "/github-profile",
-    gmail: "/send-email",
-    leetcode: "/leetcode-profile",
-    gfg: "/gfg-profile",
-    codechef: "/codechef-profile",
-    codeforces: "/codeforces-profile",
+    linkedin: profileData.linkedin,
+    github: `https://github.com/${profileData.github}`,
+    gmail: `/send-email/${profileData.email}`,
+    leetcode: `https://leetcode.com/u/${platformData.leetcode?.username}`,
+    gfg: `https://www.geeksforgeeks.org/user/${platformData.gfg?.username}`,
+    codechef: `https://www.codechef.com/users/${platformData.codechef?.username}`,
+    codeforces: `https://codeforces.com/profile/${platformData.codeforces?.username}`,
   };
 
   // Generate PDF
@@ -54,8 +65,15 @@ function Badge({ openBadge, onCloseBadge }) {
     const options = {
       margin: 1,
       filename: "badge.pdf",
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      html2canvas: {
+        scale: 2,
+        useCORS: true, // Enable CORS for cross-origin images
+      },
+      jsPDF: {
+        unit: "in",
+        format: "letter",
+        orientation: "portrait",
+      },
     };
 
     html2pdf().from(content).set(options).save();
@@ -76,7 +94,7 @@ function Badge({ openBadge, onCloseBadge }) {
         >
           {/* Profile Picture */}
           <img
-            src={platformData.codeforces.avatar} // Replace with your profile pic URL
+            src={platformData.codeforces?.avatar || "https://via.placeholder.com/96"}
             alt="Profile"
             className="w-24 h-24 rounded-full"
             crossOrigin="anonymous"
@@ -84,7 +102,7 @@ function Badge({ openBadge, onCloseBadge }) {
 
           {/* Info Section */}
           <div className="text-center">
-            <h2 className="text-xl font-bold">{profileData.nme || "Anonymous"}</h2>
+            <h2 className="text-xl font-bold">{profileData.name || "Anonymous"}</h2>
             <p className="text-sm text-gray-600">
               Level: <span className="text-red-500">{level}</span>
             </p>
