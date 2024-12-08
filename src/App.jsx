@@ -11,6 +11,7 @@ import Education from './ResumeEditItems/Education'
 import Skills from './ResumeEditItems/Skills'
 import Achievements from './ResumeEditItems/Achievements'
 import Projects from './ResumeEditItems/Projects'
+import ViewResume from './ViewResume'
 
 const router= createBrowserRouter(
   [
@@ -38,7 +39,7 @@ const router= createBrowserRouter(
     {
       path: '/resume/view',
       element:
-      <h1>View Resume</h1>
+      <ViewResume/>
     },
     {
       path: '/resume/edit',
