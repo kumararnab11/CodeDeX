@@ -12,7 +12,7 @@ function Projects() {
   const [projects, setProjects] = useState(
     projectsData.length > 0
       ? projectsData
-      : Array(4).fill({ head: "", desc: "", link: "" }) // Start with 4 empty inputs if no data
+      : Array(4).fill({ head: "", desc: "", link: "",git:"",technologies:"" }) // Start with 4 empty inputs if no data
   );
 
   const handleChange = (index, field, value) => {
@@ -23,7 +23,7 @@ function Projects() {
   };
 
   const addProject = () => {
-    setProjects([...projects, { head: "", desc: "", link: "" }]);
+    setProjects([...projects, { head: "", desc: "", link: "",git:"",technologies:"" }]);
   };
 
 
@@ -68,6 +68,20 @@ function Projects() {
               placeholder={`Link ${index + 1} (optional)`}
               value={project.link}
               onChange={(e) => handleChange(index, "link", e.target.value)}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              placeholder={`Git Repo ${index + 1} (optional)`}
+              value={project.git}
+              onChange={(e) => handleChange(index, "git", e.target.value)}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              placeholder={`Technologies Used ${index + 1} (optional)`}
+              value={project.technologies}
+              onChange={(e) => handleChange(index, "technologies", e.target.value)}
               className="border p-2 rounded-md w-full"
             />
             {/* Remove Button */}

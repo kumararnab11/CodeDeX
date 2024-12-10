@@ -16,7 +16,7 @@ function Achievements() {
     leetcode: false,
     codechef: false,
     codeforces: false,
-    gfg: false,
+    gfg: false
   });
 
   // State to manage achievements

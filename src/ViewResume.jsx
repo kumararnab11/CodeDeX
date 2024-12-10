@@ -1,15 +1,19 @@
 import React from "react";
 import { FaGithub, FaLink,FaLinkedin } from "react-icons/fa";
 import { SiLeetcode,SiCodeforces,SiCodechef,SiGeeksforgeeks,SiGithub } from "react-icons/si";
+import { useSelector } from "react-redux";
 
 function ViewResume() {
-  const name = "Arnab Kumar";
+  const resumeData = useSelector((state) => state.resume) ;
+  const profileData=useSelector((state) => state.profile);
+  const platformData=useSelector((state) => state.platform);
+  const name = profileData.nme || "Enter Name in Profile Section";
   const contact = {
-    location: "Kolkata, West Bengal",
+    location: profileData.location|| "Enter Location in Profile Section",
     phone: "+91 9547428943",
-    email: "kumararnab0342@gmail.com",
-    linkedin: "https://linkedin.com/in/arnab-kumar-896737253",
-    github: "https://github.com/kumararnab11",
+    email: profileData.email|| "Enter Email in Profile Section",
+    linkedin: profileData.linkedin|| "Enter Linkedin in Profile Section",
+    github: profileData.github|| "Enter Github in Profile Section",
   };
 
   const education = [
@@ -36,13 +40,7 @@ function ViewResume() {
     },
   ];
 
-  const achievements = [
-    "ACM ICPC Regionalist 2023-24",
-    "Secured Global rank of 255 in TCS Codevita Season 11",
-    "Attained a peak rating of 1437 (Specialist) on Codeforces",
-    "Peak rating of 1740 (3 star) on Codechef",
-    "Rated 1885 (Knight) at LeetCode with solved over 600 problems",
-  ];
+  const achievements = resumeData.achievements;
 
   const skills = ["C++", "Python", "ReactJS", "HTML/CSS", "JavaScript"];
 
@@ -138,16 +136,16 @@ function ViewResume() {
             Education
           </h2>
           <div className="space-y-2">
-            {education.map((edu, index) => (
+            {[resumeData.clg,resumeData.hs,resumeData.sec].map((edu, index) => (
               <div key={index} className="flex justify-between text-sm">
                 <div>
-                  <h3 className="font-medium text-gray-800">{edu.institution}</h3>
-                  <p className="text-gray-600 italic">{edu.degree}</p>
+                  <h3 className="font-medium text-gray-800">{edu.scl}</h3>
+                  <p className="text-gray-600 italic">{edu.major}</p>
                 </div>
                 <div className="text-right text-gray-500">
-                  <p>{edu.duration}</p>
-                  <p>{edu.grade}</p>
-                  <p className="italic">{edu.location}</p>
+                  <p>{`${edu.from} ${edu.till}`}</p>
+                  <p>{edu.marks}</p>
+                  <p className="italic">{edu.board}</p>
                 </div>
               </div>
             ))}
@@ -160,13 +158,13 @@ function ViewResume() {
             Projects
           </h2>
           <ul className="space-y-4">
-            {projects.map((project, index) => (
+            {resumeData.projects.map((project, index) => (
               <li key={index} className="text-sm">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-medium text-gray-800">{project.name}</h3>
+                  <h3 className="font-medium text-gray-800">{project.head}</h3>
                   <div className="flex space-x-4">
                     <a
-                      href={project.projectLink}
+                      href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800 text-lg"
@@ -174,7 +172,7 @@ function ViewResume() {
                       <FaLink />
                     </a>
                     <a
-                      href={project.repoLink}
+                      href={project.git}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-800 text-lg"
@@ -183,9 +181,9 @@ function ViewResume() {
                     </a>
                   </div>
                 </div>
-                <p className="text-gray-600">{project.description}</p>
+                <p className="text-gray-600">{project.desc}</p>
                 <p className="text-gray-500">
-                  <strong>Technologies:</strong> {project.technologies.join(", ")}
+                  <strong>Technologies:</strong> {project.technologies}
                 </p>
               </li>
             ))}
@@ -199,7 +197,9 @@ function ViewResume() {
           </h2>
           <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
             {achievements.map((achievement, index) => (
-              <li key={index}>{achievement}</li>
+              <li key={index}>
+                <a href={achievement.link}>{achievement.desc}</a>
+              </li>
             ))}
           </ul>
         </section>
@@ -210,12 +210,12 @@ function ViewResume() {
             Skills
           </h2>
           <ul className="flex flex-wrap gap-2 text-sm">
-            {skills.map((skill, index) => (
+            {resumeData.skills.map((skill, index) => (
               <li
                 key={index}
                 className="bg-gray-200 px-3 py-1 rounded-lg text-gray-600"
               >
-                {skill}
+              <a href={skill.link}>{skill.skill}</a>
               </li>
             ))}
           </ul>

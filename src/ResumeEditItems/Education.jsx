@@ -10,9 +10,9 @@ function Education() {
 
   // Form state
   const [formData, setFormData] = useState({
-    hs: { scl: resumeData.hs.scl||"", marks: resumeData.hs.marks||"", board: resumeData.hs.board||"" },
-    sec: { scl: resumeData.sec.scl||"", marks: resumeData.sec.marks||"", board: resumeData.sec.board||"" },
-    clg: { scl: resumeData.clg.scl||"", marks: resumeData.clg.marks||"", board: resumeData.clg.board||"" },
+    hs: { scl: resumeData.hs.scl||"", marks: resumeData.hs.marks||"", board: resumeData.hs.board||"",from:resumeData.hs.from||"",till:resumeData.hs.till||"",major:resumeData.hs.major||"" },
+    sec: { scl: resumeData.sec.scl||"", marks: resumeData.sec.marks||"", board: resumeData.sec.board||"" ,from:resumeData.sec.from||"",till:resumeData.sec.till||"",major:resumeData.sec.major||""},
+    clg: { scl: resumeData.clg.scl||"", marks: resumeData.clg.marks||"", board: resumeData.clg.board||"",from:resumeData.clg.from||"",till:resumeData.clg.till||"",major:resumeData.clg.major||"" },
   });
 
   // Handle input change
@@ -52,6 +52,14 @@ function Education() {
             />
             <input
               type="text"
+              name="major"
+              placeholder="Major"
+              value={formData.hs.major}
+              onChange={(e) => handleChange(e, "hs")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
               name="marks"
               placeholder="Marks"
               value={formData.hs.marks}
@@ -63,6 +71,22 @@ function Education() {
               name="board"
               placeholder="Board"
               value={formData.hs.board}
+              onChange={(e) => handleChange(e, "hs")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              name="from"
+              placeholder="From Date"
+              value={formData.hs.from}
+              onChange={(e) => handleChange(e, "hs")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              name="till"
+              placeholder="Till Date"
+              value={formData.hs.till}
               onChange={(e) => handleChange(e, "hs")}
               className="border p-2 rounded-md w-full"
             />
@@ -83,6 +107,14 @@ function Education() {
             />
             <input
               type="text"
+              name="major"
+              placeholder="Major"
+              value={formData.sec.major}
+              onChange={(e) => handleChange(e, "sec")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
               name="marks"
               placeholder="Marks"
               value={formData.sec.marks}
@@ -94,6 +126,22 @@ function Education() {
               name="board"
               placeholder="Board"
               value={formData.sec.board}
+              onChange={(e) => handleChange(e, "sec")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              name="from"
+              placeholder="From Date"
+              value={formData.sec.from}
+              onChange={(e) => handleChange(e, "sec")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              name="till"
+              placeholder="Till Date"
+              value={formData.sec.till}
               onChange={(e) => handleChange(e, "sec")}
               className="border p-2 rounded-md w-full"
             />
@@ -114,6 +162,14 @@ function Education() {
             />
             <input
               type="text"
+              name="major"
+              placeholder="Major"
+              value={formData.clg.major}
+              onChange={(e) => handleChange(e, "clg")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
               name="marks"
               placeholder="Marks"
               value={formData.clg.marks}
@@ -125,6 +181,22 @@ function Education() {
               name="board"
               placeholder="Board"
               value={formData.clg.board}
+              onChange={(e) => handleChange(e, "clg")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              name="from"
+              placeholder="From Date"
+              value={formData.clg.from}
+              onChange={(e) => handleChange(e, "clg")}
+              className="border p-2 rounded-md w-full"
+            />
+            <input
+              type="text"
+              name="till"
+              placeholder="Till Date"
+              value={formData.clg.till}
               onChange={(e) => handleChange(e, "clg")}
               className="border p-2 rounded-md w-full"
             />

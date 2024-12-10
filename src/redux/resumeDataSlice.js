@@ -5,16 +5,25 @@ const savedResume = JSON.parse(localStorage.getItem('resume')) || {
         scl:'',
         marks:'0',
         board:'',
+        from:'',
+        till:'',
+        major:''
     },
     sec:{
         scl:'',
         marks:'0',
         board:'',
+        from:'',
+        till:'',
+        major:''
     },
     clg:{
         scl:'',
         marks:'0',
         board:'',
+        from:'',
+        till:'',
+        major:''
     },
     achievements:[
         {
@@ -26,7 +35,9 @@ const savedResume = JSON.parse(localStorage.getItem('resume')) || {
         {
             head:'',
             desc:'',
-            link:''
+            link:'',
+            git:'',
+            technologies:''
         }
     ],
     skills:[
