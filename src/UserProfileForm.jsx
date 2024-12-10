@@ -121,6 +121,17 @@ function UserProfileForm() {
           />
         </div>
 
+        <div>
+          <label className="block text-gray-700">Phone no:</label>
+          <input
+            type="number"
+            name="ph"
+            value={formData.ph}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+
         <button
           type="submit"
           className="w-full bg-orange-500 text-white p-2 rounded hover:bg-orange-600"

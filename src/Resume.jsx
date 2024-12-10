@@ -11,7 +11,6 @@ function Resume() {
       <Button className='bg-orange-500 hover:bg-orange-700'
       onClick={()=>navigate('/resume/view')}
       >View Resume</Button>
-      <Button className='bg-orange-500 hover:bg-orange-700'>Update Resume</Button>
     </div>
   )
 }

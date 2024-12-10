@@ -1,7 +1,9 @@
-import React from "react";
-import { FaGithub, FaLink,FaLinkedin } from "react-icons/fa";
-import { SiLeetcode,SiCodeforces,SiCodechef,SiGeeksforgeeks,SiGithub } from "react-icons/si";
+import React, {useRef } from "react";
+import { FaGithub, FaLink, FaLinkedin } from "react-icons/fa";
+import { SiLeetcode, SiCodeforces, SiCodechef, SiGeeksforgeeks } from "react-icons/si";
 import { useSelector } from "react-redux";
+import { jsPDF } from "jspdf";
+import html2pdf from "html2pdf.js";
 
 function ViewResume() {
   const resumeData = useSelector((state) => state.resume) ;
@@ -11,68 +13,48 @@ function ViewResume() {
   const name = profileData.nme || "Enter Name in Profile Section";
   const contact = {
     location: profileData.location|| "Enter Location in Profile Section",
-    phone: "+91 9547428943",
+    phone: profileData.ph||"Enter Phone no in Profile Section",
     email: profileData.email|| "Enter Email in Profile Section",
     linkedin: profileData.linkedin|| "Enter Linkedin in Profile Section",
     github: profileData.github|| "Enter Github in Profile Section",
   };
-
-  const education = [
-    {
-      institution: "Narula Institute of Technology",
-      degree: "B.Tech in Computer Science",
-      duration: "Sept 2022 - July 2026",
-      grade: "CGPA: 9.08 (till 3rd Semester)",
-      location: "West Bengal, India",
-    },
-    {
-      institution: "Maldanga R M Institution",
-      degree: "10+2 Higher Secondary Education (PCM)",
-      duration: "April 2019 - June 2021",
-      grade: "Percentage: 89.6%",
-      location: "West Bengal, India",
-    },
-    {
-      institution: "Maldanga R M Institution",
-      degree: "10th Secondary Education",
-      duration: "2019",
-      grade: "Percentage: 94%",
-      location: "West Bengal, India",
-    },
-  ];
-
   const achievements = resumeData.achievements;
 
-  const skills = ["C++", "Python", "ReactJS", "HTML/CSS", "JavaScript"];
 
-  const projects = [
-    {
-      name: "Portfolio",
-      description:
-        "A frontend website showcasing modern web design principles using HTML and CSS.",
-      technologies: ["HTML", "CSS"],
-      projectLink: "https://example.com/portfolio",
-      repoLink: "https://github.com/example/portfolio",
-    },
-    {
-      name: "GPA Achiever",
-      description: "A ReactJS app for calculating average CGPA.",
-      technologies: ["ReactJS", "HTML", "CSS"],
-      projectLink: "https://example.com/gpa-achiever",
-      repoLink: "https://github.com/example/gpa-achiever",
-    },
-    {
-      name: "Color Generator",
-      description: "A tool to generate random Hex, RGB, and normal colors.",
-      technologies: ["JavaScript", "HTML", "CSS"],
-      projectLink: "https://example.com/color-generator",
-      repoLink: "https://github.com/example/color-generator",
-    },
-  ];
+  const contentRef = useRef(null);
+
+  const handleDownload = () => {
+    const content = contentRef.current;
+    if (!content) return;
+
+    const options = {
+      margin: 0,
+      filename: "resume.pdf",
+      html2canvas: {
+        scale: 2,
+        useCORS: true, // Enable CORS for cross-origin images
+      },
+      jsPDF: {
+        unit: "in",
+        format: "letter",
+        orientation: "portrait",
+      },
+    };
+
+    html2pdf().from(content).set(options).save();
+  };
+
 
   return (
     <div className="bg-gray-100 min-h-screen p-4">
-      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-4">
+      {/* Download Button */}
+      <button
+        onClick={handleDownload}
+        className="absolute top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
+      >
+        Download PDF
+      </button>
+      <div ref={contentRef} className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-4">
         {/* Name and Contact */}
         <div className="text-center mb-4">
           <h1 className="text-2xl font-bold text-blue-700">{name}</h1>
@@ -89,7 +71,7 @@ function ViewResume() {
               <FaLinkedin />
             </a>
             <a
-              href={contact.github}
+              href={`https://github.com/${contact.github}`}
               className="text-blue-600 hover:text-blue-800 text-xl"
               target="_blank"
               rel="noopener noreferrer"
@@ -97,7 +79,7 @@ function ViewResume() {
               <FaGithub />
             </a>
             <a
-              href={contact.github}
+              href={`https://leetcode.com/${platformData.leetcode.username}`}
               className="text-blue-600 hover:text-blue-800 text-xl"
               target="_blank"
               rel="noopener noreferrer"
@@ -105,7 +87,7 @@ function ViewResume() {
               <SiLeetcode />
             </a>
             <a
-              href={contact.github}
+              href={`https://www.codechef.com/users/${platformData.codechef.username}`}
               className="text-blue-600 hover:text-blue-800 text-xl"
               target="_blank"
               rel="noopener noreferrer"
@@ -113,7 +95,7 @@ function ViewResume() {
               <SiCodechef />
             </a>
             <a
-              href={contact.github}
+              href={`https://codeforces.com/profile/${platformData.leetcode.username}`}
               className="text-blue-600 hover:text-blue-800 text-xl"
               target="_blank"
               rel="noopener noreferrer"
@@ -121,7 +103,7 @@ function ViewResume() {
               <SiCodeforces />
             </a>
             <a
-              href={contact.github}
+              href={`https://www.geeksforgeeks.org/user/${platformData.gfg.username}`}
               className="text-blue-600 hover:text-blue-800 text-xl"
               target="_blank"
               rel="noopener noreferrer"
@@ -211,7 +193,7 @@ function ViewResume() {
             )}
             {toggleData.codeforces && (
               <li>
-                <a href={`https://leetcode.com/${platformData.leetcode.username}`}>
+                <a href={`https://codeforces.com/profile/${platformData.leetcode.username}`}>
                 <span className="font-bold">{platformData.codeforces.maxBadge}</span>
                   {`(${platformData.codeforces.maxrating}) in `}
                   <span className="text-blue-700">Codeforces</span>
@@ -220,7 +202,7 @@ function ViewResume() {
             )}
             {toggleData.codechef && (
               <li>
-                <a href={`https://codechef.com/${platformData.codechef.username}`}>
+                <a href={`https://www.codechef.com/users/${platformData.codechef.username}`}>
                 <span className="font-bold">{platformData.codechef.badge}</span>
                   {`(${platformData.codechef.maxrating}) in `}
                   <span className="text-blue-700">Codechef</span>
@@ -229,7 +211,7 @@ function ViewResume() {
             )}
             {toggleData.gfg && (
               <li>
-                <a href={`https://gfg.com/${platformData.gfg.username}`}>
+                <a href={`https://www.geeksforgeeks.org/user/${platformData.gfg.username}`}>
                   {`Has solved `}
                   <span className="font-bold">{platformData.gfg.questions}</span>
                   {`+ questions in `}
