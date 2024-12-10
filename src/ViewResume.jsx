@@ -7,6 +7,7 @@ function ViewResume() {
   const resumeData = useSelector((state) => state.resume) ;
   const profileData=useSelector((state) => state.profile);
   const platformData=useSelector((state) => state.platform);
+  const toggleData=useSelector((state)=>state.toggle)
   const name = profileData.nme || "Enter Name in Profile Section";
   const contact = {
     location: profileData.location|| "Enter Location in Profile Section",
@@ -196,6 +197,46 @@ function ViewResume() {
             Achievements
           </h2>
           <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+            {toggleData.leetcode && (
+              <li>
+                <a href={`https://leetcode.com/${platformData.leetcode.username}`}>
+                  {`With a contest rating of `} 
+                  <span className="font-bold">{platformData.leetcode.rating}</span> 
+                  {` solved `} 
+                  <span className="font-bold">{platformData.leetcode.questions}</span> 
+                  {`+ problems in `}
+                  <span className="text-blue-700">Leetcode</span>
+                </a>
+              </li>
+            )}
+            {toggleData.codeforces && (
+              <li>
+                <a href={`https://leetcode.com/${platformData.leetcode.username}`}>
+                <span className="font-bold">{platformData.codeforces.maxBadge}</span>
+                  {`(${platformData.codeforces.maxrating}) in `}
+                  <span className="text-blue-700">Codeforces</span>
+                </a>
+              </li>
+            )}
+            {toggleData.codechef && (
+              <li>
+                <a href={`https://codechef.com/${platformData.codechef.username}`}>
+                <span className="font-bold">{platformData.codechef.badge}</span>
+                  {`(${platformData.codechef.maxrating}) in `}
+                  <span className="text-blue-700">Codechef</span>
+                </a>
+              </li>
+            )}
+            {toggleData.gfg && (
+              <li>
+                <a href={`https://gfg.com/${platformData.gfg.username}`}>
+                  {`Has solved `}
+                  <span className="font-bold">{platformData.gfg.questions}</span>
+                  {`+ questions in `}
+                  <span className="text-blue-700">GeekforGeeks</span>
+                </a>
+              </li>
+            )}
             {achievements.map((achievement, index) => (
               <li key={index}>
                 <a href={achievement.link}>{achievement.desc}</a>

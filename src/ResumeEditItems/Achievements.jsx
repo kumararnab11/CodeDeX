@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateResume } from "@/redux/resumeDataSlice";
+import { updateToggle } from "@/redux/toggleSlice";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 
@@ -10,14 +11,10 @@ function Achievements() {
   // Fetch initial achievements data from Redux
   const achievementsData = useSelector((state) => state.resume.achievements);
   const resumeData = { ...useSelector((state) => state.resume) };
+  const toggleData = { ...useSelector((state) => state.toggle) };
 
   // States for tags
-  const [tags, setTags] = useState({
-    leetcode: false,
-    codechef: false,
-    codeforces: false,
-    gfg: false
-  });
+  const [tags, setTags] = useState(toggleData);
 
   // State to manage achievements
   const [achievements, setAchievements] = useState(
@@ -35,6 +32,7 @@ function Achievements() {
       ...prevTags,
       [tag]: !prevTags[tag],
     }));
+    console.log(tags);
   };
 
   // Handle input change for achievements
@@ -72,6 +70,12 @@ function Achievements() {
     };
     dispatch(updateResume(updatedResume));
 
+    const updatedToggle ={
+      ...tags
+    }
+    console.log(updatedToggle)
+    dispatch(updateToggle(updatedToggle))
+
     alert("Achievements updated successfully!");
   };
 
@@ -81,7 +85,7 @@ function Achievements() {
 
       {/* Tags Section */}
       <div className="flex space-x-4 mb-6">
-        {["leetcode", "codechef", "codeforces", "gfg"].map((tag) => (
+        {["leetcode", "codechef", "gfg", "codeforces"].map((tag) => (
           <div key={tag} className="flex items-center">
             <button
               onClick={() => toggleTag(tag)}
