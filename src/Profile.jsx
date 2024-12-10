@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
 import { IoLocationSharp } from "react-icons/io5";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaGraduationCap } from "react-icons/fa6";
@@ -6,17 +6,19 @@ import { IoLogoLinkedin } from "react-icons/io5";
 import { FaTwitterSquare, FaGithub, FaIdBadge } from "react-icons/fa";
 import { GrLanguage } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { updateProfile } from './redux/formDataSlice';
+import { useSelector } from 'react-redux';
 import AppDrawer from './AppDrawer';
 import Resume from './Resume';
 import Badge from './Badge';
 
 function Profile() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.profile);
-  const profilePic=JSON.parse(localStorage.getItem('platform')).codeforces.avatar;
+  
+  // Safe retrieval of platform data from localStorage
+  const platformData = JSON.parse(localStorage.getItem('platform'));
+  const profilePic = platformData?.codeforces?.avatar || "https://via.placeholder.com/80";  // Default if null
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isBadgeOpen, setBadgeClose] = useState(false);
 
@@ -25,14 +27,14 @@ function Profile() {
       {/* Profile Picture and Name */}
       <div className="flex flex-col items-center text-center">
         <img
-          src={profilePic || "https://via.placeholder.com/80"}
+          src={profilePic}
           alt="Profile"
           className="w-20 h-20 rounded-full border-2 border-gray-300"
         />
         <h2 className="mt-2 text-xl font-semibold">{data.nme || 'Anonymous'}</h2>
         <a href="#" className="text-blue-500 text-sm">{data.username || '@9cYFubNP'}</a>
         <p className="text-gray-500 text-xs mt-1">
-        Last Refreshed at: {new Date().toLocaleDateString()} {new Date().toLocaleTimeString()}
+          Last Refreshed at: {new Date().toLocaleDateString()} {new Date().toLocaleTimeString()}
         </p>
       </div>
 
@@ -92,6 +94,7 @@ function Profile() {
           Resume
         </button>
       </div>
+      
       {/* Drawer Component */}
       <AppDrawer
         open={isDrawerOpen}
@@ -101,6 +104,7 @@ function Profile() {
       >
         <Resume/>
       </AppDrawer>
+      
       {/* Badge Component */}
       <Badge
         openBadge={isBadgeOpen}
