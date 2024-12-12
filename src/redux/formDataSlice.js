@@ -10,6 +10,7 @@ const savedProfile = JSON.parse(localStorage.getItem('profile')) || {
   language: '',
   github: '',
   nme:'',
+  ph:''
 };
 
 const profileSlice = createSlice({
