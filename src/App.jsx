@@ -19,7 +19,7 @@ const router= createBrowserRouter(
       path: '/',
       element:
       <div className="flex h-screen">
-        <div className="flex-1 overflow-y-none">
+        <div className="flex-1 overflow-y-none relative">
           <Navbar />
           <Home />          
         </div>

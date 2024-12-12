@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { IoLocationSharp } from "react-icons/io5";
+import { IoLocationSharp,IoLanguageSharp  } from "react-icons/io5";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaGraduationCap } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
-import { FaTwitterSquare, FaGithub, FaIdBadge } from "react-icons/fa";
+import { FaGithub, FaIdBadge } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { GrLanguage } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -17,7 +18,7 @@ function Profile() {
   
   // Safe retrieval of platform data from localStorage
   const platformData = JSON.parse(localStorage.getItem('platform'));
-  const profilePic = platformData?.codeforces?.avatar || "https://via.placeholder.com/80";  // Default if null
+  const profilePic = platformData?.codeforces?.avatar || "https://via.placeholder.com/80";
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isBadgeOpen, setBadgeClose] = useState(false);
@@ -58,18 +59,18 @@ function Profile() {
         </div>
         <div className="flex items-center text-gray-500 text-sm">
           <HiOutlineMail className="mr-2 text-red-700" />
-          <span>{data.email || 'kumararnab0342@gmail.com'}</span>
+          <span>{data.email || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
           <IoLogoLinkedin className="mr-2 text-blue-600" />
           <span>{data.linkedin || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <FaTwitterSquare className="mr-2 text-blue-500" />
+          <FaSquareXTwitter className="mr-2 text-black" />
           <span>{data.twitter || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <GrLanguage className="mr-2 text-green-400" />
+          <IoLanguageSharp  className="mr-2 text-green-400" />
           <span>{data.language || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">

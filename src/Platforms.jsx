@@ -46,7 +46,7 @@ function Platforms() {
 
         {/* Gfg */}
         <div className="bg-gradient-to-r from-orange-400 to-orange-600 text-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-xl font-bold mb-4">{platformData.gfg.name}</h3>
+          <h3 className="text-xl font-bold mb-4">GeekforGeeks</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-gray-200">Questions Solved:</span>
