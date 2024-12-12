@@ -1,0 +1,8 @@
+{
+	"rewrites": [
+		{
+			"source": "/gfg/:path*",
+			"destination": "https://geeks-for-geeks-api.vercel.app/:path*"
+		}
+	]
+}

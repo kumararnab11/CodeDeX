@@ -5,7 +5,6 @@ import { FaGraduationCap } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { FaGithub, FaIdBadge } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import { GrLanguage } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AppDrawer from './AppDrawer';
