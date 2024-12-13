@@ -23,7 +23,7 @@ function Profile() {
   const [isBadgeOpen, setBadgeClose] = useState(false);
 
   return (
-    <div className="w-[25%] p-4 m-2 bg-white rounded-lg shadow-lg border">
+    <div className="w-[25%] min-w-[300px] p-4 m-2 bg-white rounded-lg shadow-lg border">
       {/* Profile Picture and Name */}
       <div className="flex flex-col items-center text-center">
         <img
