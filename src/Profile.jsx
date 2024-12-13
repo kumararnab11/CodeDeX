@@ -55,8 +55,15 @@ function Profile() {
             src={
               profilePic === 0 
                 ? (platformData?.codeforces?.avatar || "https://via.placeholder.com/80") 
-                : `/src/assets/avatar${profilePic}.jpg`
+                : profilePic === 1 ? avatar1
+                : profilePic === 2 ? avatar2
+                : profilePic === 3 ? avatar3
+                : profilePic === 4 ? avatar4
+                : profilePic === 5 ? avatar5
+                : profilePic === 6 ? avatar6
+                : "https://via.placeholder.com/80"
             }
+          
             alt="Profile"
             className="w-20 h-20 rounded-full border-2 border-gray-300"
           />

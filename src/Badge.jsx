@@ -5,6 +5,12 @@ import { useSelector } from "react-redux";
 import {SiLeetcode,SiCodeforces,SiCodechef,SiGeeksforgeeks,} from "react-icons/si";
 import {Dialog,DialogContent,DialogHeader,DialogTitle,DialogDescription,} from "@/components/ui/dialog";
 import html2pdf from "html2pdf.js"; // Import html2pdf.js
+import avatar1 from './assets/avatar1.jpg';
+import avatar2 from './assets/avatar2.jpg';
+import avatar3 from './assets/avatar3.jpg';
+import avatar4 from './assets/avatar4.jpg';
+import avatar5 from './assets/avatar5.jpg';
+import avatar6 from './assets/avatar6.jpg';
 
 function Badge({ openBadge, onCloseBadge }) {
   const profileData = JSON.parse(localStorage.getItem("profile")) || {};
@@ -88,7 +94,13 @@ function Badge({ openBadge, onCloseBadge }) {
             src={
               profilePic === 0 
                 ? (platformData?.codeforces?.avatar || "https://via.placeholder.com/80") 
-                : `/src/assets/avatar${profilePic}.jpg`
+                : profilePic === 1 ? avatar1
+                : profilePic === 2 ? avatar2
+                : profilePic === 3 ? avatar3
+                : profilePic === 4 ? avatar4
+                : profilePic === 5 ? avatar5
+                : profilePic === 6 ? avatar6
+                : "https://via.placeholder.com/80"
             }
             alt="Profile"
             className="w-24 h-24 rounded-full"
