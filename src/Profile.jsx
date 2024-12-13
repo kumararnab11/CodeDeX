@@ -24,6 +24,14 @@ import {
 } from "@/components/ui/alert-dialog"
 import { updateAvatar } from './redux/avatarSlice';
 
+import avatar1 from './assets/avatar1.jpg';
+import avatar2 from './assets/avatar2.jpg';
+import avatar3 from './assets/avatar3.jpg';
+import avatar4 from './assets/avatar4.jpg';
+import avatar5 from './assets/avatar5.jpg';
+import avatar6 from './assets/avatar6.jpg';
+
+
 
 function Profile() {
   const dispatch = useDispatch();
@@ -147,12 +155,12 @@ function Profile() {
               <AlertDialogDescription>currently avatar {avatar} is selected</AlertDialogDescription>
               <div className='flex flex-row flex-wrap'>
                 <div onClick={()=>setAvatar(0)}><img src={platformData?.codeforces?.avatar||"https://via.placeholder.com/80"} alt="" /></div>
-                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(1)}><img src="/src/assets/avatar1.jpg" alt="" /></div>
-                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(2)}><img src="/src/assets/avatar2.jpg" alt="" /></div>
-                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(3)}><img src="/src/assets/avatar3.jpg" alt="" /></div>
-                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(4)}><img src="/src/assets/avatar4.jpg" alt="" /></div>
-                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(5)}><img src="/src/assets/avatar5.jpg" alt="" /></div>
-                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(6)}><img src="/src/assets/avatar6.jpg" alt="" /></div>
+              <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(1)}><img src={avatar1} alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(2)}><img src={avatar2} alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(3)}><img src={avatar3} alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(4)}><img src={avatar4} alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(5)}><img src={avatar5} alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(6)}><img src={avatar6} alt="" /></div>
               </div>
             </AlertDialogHeader>
             <AlertDialogFooter>
