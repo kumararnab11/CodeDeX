@@ -89,36 +89,37 @@ function Profile() {
       </button>
 
       {/* Info Section */}
-      <div className="mt-4 space-y-2">
+      <div className="mt-4 space-y-2 overflow-hidden">
         <div className="flex items-center text-gray-500 text-sm">
           <IoLocationSharp className="mr-2 text-blue-600" />
-          <span>{data.location || 'N/A'}</span>
+          <span>{data.location?.length > 30 ? data.location.substr(0, 30) + '...' : data.location || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
           <FaGraduationCap className="mr-2 text-purple-700" />
-          <span>{data.institution || 'N/A'}</span>
+          <span>{data.institution?.length > 30 ? data.institution.substr(0, 30) + '...' : data.institution || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
           <HiOutlineMail className="mr-2 text-red-700" />
-          <span>{data.email || 'N/A'}</span>
+          <span>{data.email?.length > 30 ? data.email.substr(0, 30) + '...' : data.email || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
           <IoLogoLinkedin className="mr-2 text-blue-600" />
-          <span>{data.linkedin || 'N/A'}</span>
+          <span>{data.linkedin?.length > 30 ? data.linkedin.substr(0, 30) + '...' : data.linkedin || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
           <FaSquareXTwitter className="mr-2 text-black" />
-          <span>{data.twitter || 'N/A'}</span>
+          <span>{data.twitter?.length > 30 ? data.twitter.substr(0, 30) + '...' : data.twitter || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
-          <IoLanguageSharp  className="mr-2 text-green-400" />
-          <span>{data.language || 'N/A'}</span>
+          <IoLanguageSharp className="mr-2 text-green-400" />
+          <span>{data.language?.length > 30 ? data.language.substr(0, 30) + '...' : data.language || 'N/A'}</span>
         </div>
         <div className="flex items-center text-gray-500 text-sm">
           <FaGithub className="mr-2 text-black" />
-          <span>{data.github || 'N/A'}</span>
+          <span>{data.github?.length > 30 ? data.github.substr(0, 30) + '...' : data.github || 'N/A'}</span>
         </div>
       </div>
+
 
       {/* Action Buttons */}
       <div className="mt-4 space-y-2">

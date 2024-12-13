@@ -81,7 +81,7 @@ function UserProfileForm() {
           <input
             type="text"
             name="linkedin"
-            placeholder='lonkedin entire url'
+            placeholder='linkedin entire url'
             value={formData.linkedin}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500"
@@ -127,7 +127,8 @@ function UserProfileForm() {
         <div>
           <label className="block text-gray-700">Phone no:</label>
           <input
-            type="number"
+            type="tel"
+            pattern="[0-9]{10}"
             name="ph"
             value={formData.ph}
             onChange={handleChange}
