@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const avatarData = localStorage.getItem('profile') || 1;
+const avatarData = localStorage.getItem('avatar') || 1;
 
 const avatarSlice =createSlice({
     name:'avatar',
