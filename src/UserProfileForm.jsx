@@ -80,7 +80,8 @@ function UserProfileForm() {
           <label className="block text-gray-700">Linkedin:</label>
           <input
             type="text"
-            name="linkedin entire url"
+            name="linkedin"
+            placeholder='lonkedin entire url'
             value={formData.linkedin}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500"
@@ -92,8 +93,9 @@ function UserProfileForm() {
           <label className="block text-gray-700">Twitter:</label>
           <input
             type="text"
-            name="twitter handle"
+            name="twitter"
             value={formData.twitter}
+            placeholder='X handle'
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500"
           />
@@ -114,7 +116,8 @@ function UserProfileForm() {
           <label className="block text-gray-700">GitHub:</label>
           <input
             type="text"
-            name="github username"
+            placeholder='github username'
+            name="github"
             value={formData.github}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-orange-500"
