@@ -1,25 +1,16 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
-import {
-  SiLeetcode,
-  SiCodeforces,
-  SiCodechef,
-  SiGeeksforgeeks,
-} from "react-icons/si";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { useSelector } from "react-redux";
+import {SiLeetcode,SiCodeforces,SiCodechef,SiGeeksforgeeks,} from "react-icons/si";
+import {Dialog,DialogContent,DialogHeader,DialogTitle,DialogDescription,} from "@/components/ui/dialog";
 import html2pdf from "html2pdf.js"; // Import html2pdf.js
 
 function Badge({ openBadge, onCloseBadge }) {
   const profileData = JSON.parse(localStorage.getItem("profile")) || {};
   const platformData = JSON.parse(localStorage.getItem("platform")) || {};
   const [level, setLevel] = useState("Newbie");
+  const profilePic = useSelector((state) => state.avatar);
 
   const contentRef = useRef(null); // Ref to capture the content
 
@@ -94,7 +85,11 @@ function Badge({ openBadge, onCloseBadge }) {
         >
           {/* Profile Picture */}
           <img
-            src={platformData.codeforces?.avatar || "https://via.placeholder.com/96"}
+            src={
+              profilePic === 0 
+                ? (platformData?.codeforces?.avatar || "https://via.placeholder.com/80") 
+                : `/src/assets/avatar${profilePic}.jpg`
+            }
             alt="Profile"
             className="w-24 h-24 rounded-full"
             crossOrigin="anonymous"

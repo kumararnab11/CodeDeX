@@ -6,31 +6,58 @@ import { IoLogoLinkedin } from "react-icons/io5";
 import { FaGithub, FaIdBadge } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import AppDrawer from './AppDrawer';
 import Resume from './Resume';
 import Badge from './Badge';
+import { FaPencilAlt } from "react-icons/fa";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { updateAvatar } from './redux/avatarSlice';
+
 
 function Profile() {
+  const dispatch = useDispatch();
+  const [popup,setPopup]=useState(false);
   const navigate = useNavigate();
   const data = useSelector((state) => state.profile);
   
   // Safe retrieval of platform data from localStorage
   const platformData = JSON.parse(localStorage.getItem('platform'));
-  const profilePic = platformData?.codeforces?.avatar || "https://via.placeholder.com/80";
-
+  const profilePic = useSelector((state) => state.avatar);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isBadgeOpen, setBadgeClose] = useState(false);
+  const[avatar,setAvatar]=useState(profilePic);
 
   return (
     <div className="w-[25%] min-w-[300px] p-4 m-2 bg-white rounded-lg shadow-lg border">
       {/* Profile Picture and Name */}
       <div className="flex flex-col items-center text-center">
-        <img
-          src={profilePic}
-          alt="Profile"
-          className="w-20 h-20 rounded-full border-2 border-gray-300"
-        />
+        <div className='relative h-[80px]'>
+          <img
+            src={
+              profilePic === 0 
+                ? (platformData?.codeforces?.avatar || "https://via.placeholder.com/80") 
+                : `/src/assets/avatar${profilePic}.jpg`
+            }
+            alt="Profile"
+            className="w-20 h-20 rounded-full border-2 border-gray-300"
+          />
+          <div className='absolute bottom-0 right-0 text-green-600 hover:text-orange-600'
+            onClick={()=>setPopup(true)}
+          >
+            <FaPencilAlt/>
+          </div>
+        </div>
         <h2 className="mt-2 text-xl font-semibold">{data.nme || 'Anonymous'}</h2>
         <a href="#" className="text-blue-500 text-sm">{data.username || '@9cYFubNP'}</a>
         <p className="text-gray-500 text-xs mt-1">
@@ -110,6 +137,35 @@ function Profile() {
         openBadge={isBadgeOpen}
         onCloseBadge={() => setBadgeClose(false)}
       />
+
+      {/* Alert Dialog */}
+      {popup && (
+        <AlertDialog open={popup} onOpenChange={setPopup}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Choose Your Avatar</AlertDialogTitle>
+              <AlertDialogDescription>currently avatar {avatar} is selected</AlertDialogDescription>
+              <div className='flex flex-row flex-wrap'>
+                <div onClick={()=>setAvatar(0)}><img src={platformData?.codeforces?.avatar||"https://via.placeholder.com/80"} alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(1)}><img src="/src/assets/avatar1.jpg" alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(2)}><img src="/src/assets/avatar2.jpg" alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(3)}><img src="/src/assets/avatar3.jpg" alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(4)}><img src="/src/assets/avatar4.jpg" alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(5)}><img src="/src/assets/avatar5.jpg" alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(6)}><img src="/src/assets/avatar6.jpg" alt="" /></div>
+              </div>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setPopup(false)}>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={() => {
+                setPopup(false)
+                dispatch(updateAvatar(avatar));
+                }}>Save</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )}
+
     </div>
   );
 }
