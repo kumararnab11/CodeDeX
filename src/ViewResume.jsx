@@ -4,6 +4,7 @@ import { SiLeetcode, SiCodeforces, SiCodechef, SiGeeksforgeeks } from "react-ico
 import { useSelector } from "react-redux";
 import { jsPDF } from "jspdf";
 import html2pdf from "html2pdf.js";
+import { ImDownload2 } from "react-icons/im";
 
 function ViewResume() {
   const resumeData = useSelector((state) => state.resume) ;
@@ -52,7 +53,7 @@ function ViewResume() {
         onClick={handleDownload}
         className="absolute top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
       >
-        Download PDF
+        <ImDownload2/>
       </button>
       <div ref={contentRef} className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-4">
         {/* Name and Contact */}
@@ -183,7 +184,7 @@ function ViewResume() {
               <li>
                 <a href={`https://leetcode.com/${platformData.leetcode.username}`}>
                   {`With a contest rating of `} 
-                  <span className="font-bold">{platformData.leetcode.rating.substr(0,4)}</span> 
+                  <span className="font-bold">{platformData.leetcode.rating.toString().substr(0,4)}</span> 
                   {` solved `} 
                   <span className="font-bold">{platformData.leetcode.questions}</span> 
                   {`+ problems in `}
