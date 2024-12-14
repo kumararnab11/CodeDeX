@@ -46,8 +46,6 @@ function Profile() {
   const [isBadgeOpen, setBadgeClose] = useState(false);
   const[avatar,setAvatar]=useState(profilePic);
 
-  console.log(profilePic)
-
   return (
     <div className="w-[25%] min-w-[300px] p-4 m-2 bg-white rounded-lg shadow-lg border">
       {/* Profile Picture and Name */}

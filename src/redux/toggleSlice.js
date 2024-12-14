@@ -5,7 +5,13 @@ const data= JSON.parse(localStorage.getItem('toggle'))||
     leetcode: false,
     codeforces:false,
     codechef:false,
-    gfg:false
+    gfg:false,
+    achievements:false,
+    workExp:false,
+    projects:false,
+    languages:false,
+    skills:false,
+    leadership:false
 }
 
 const toggleSlice=createSlice({

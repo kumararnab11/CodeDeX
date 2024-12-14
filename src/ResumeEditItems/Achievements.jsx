@@ -4,6 +4,7 @@ import { updateResume } from "@/redux/resumeDataSlice";
 import { updateToggle } from "@/redux/toggleSlice";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { FaToggleOff,FaToggleOn } from "react-icons/fa6";
 
 function Achievements() {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Achievements() {
       ...prevTags,
       [tag]: !prevTags[tag],
     }));
-    console.log(tags);
+    //console.log(tags);
   };
 
   // Handle input change for achievements
@@ -73,7 +74,6 @@ function Achievements() {
     const updatedToggle ={
       ...tags
     }
-    console.log(updatedToggle)
     dispatch(updateToggle(updatedToggle))
 
     alert("Achievements updated successfully!");
@@ -81,7 +81,12 @@ function Achievements() {
 
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
-      <h2 className="text-2xl font-bold mb-4 text-orange-600">Achievements</h2>
+      <div className="flex items-center">
+        <h2 className="text-2xl font-bold mb-4 text-orange-600">Achievements</h2>
+        {tags.achievement
+        ?<FaToggleOn className="text-orange-500 ml-4 mb-3 size-5" onClick={()=>toggleTag('achievement')}/>
+        :<FaToggleOff className="text-orange-500 ml-4 mb-3 size-5" onClick={()=>toggleTag('achievement')}/>}
+      </div>
 
       {/* Tags Section */}
       <div className="flex space-x-4 mb-6">

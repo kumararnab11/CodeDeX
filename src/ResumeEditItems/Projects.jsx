@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateResume } from "@/redux/resumeDataSlice";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import { updateToggle } from "@/redux/toggleSlice";
+import { FaToggleOff,FaToggleOn } from "react-icons/fa6";
 
 function Projects() {
   const dispatch = useDispatch();
 
   const projectsData = useSelector((state) => state.resume.projects);
   const resumeData = { ...useSelector((state) => state.resume.projects) };
+  const toggleData= {...useSelector((state)=>state.toggle)};
+
+  const [tags,setTags]=useState(toggleData);
+
+  const toggleTag = (tag) => {
+    setTags((prevTags) => ({
+      ...prevTags,
+      [tag]: !prevTags[tag],
+    }));
+  };
 
   const [projects, setProjects] = useState(
     projectsData.length > 0
@@ -40,12 +52,23 @@ function Projects() {
     const data = { ...resumeData, projects: updatedProjects };
     dispatch(updateResume(data));
 
+    const updatedToggle ={
+      ...tags
+    }
+    dispatch(updateToggle(updatedToggle))
+
     alert("Projects updated successfully!");
   };
 
   return (
     <div className="p-4 bg-gray-100 min-h-screen">
-      <h2 className="text-2xl font-bold mb-4 text-orange-600">Projects</h2>
+      <div className="flex items-center">
+        <h2 className="text-2xl font-bold mb-4 text-orange-600">Projects</h2>
+        {tags.projects
+          ?<FaToggleOn className="text-orange-500 ml-4 mb-3 size-5" onClick={()=>toggleTag('projects')}/>
+          :<FaToggleOff className="text-orange-500 ml-4 mb-3 size-5" onClick={()=>toggleTag('projects')}/>
+        }
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 shadow rounded-lg">
         {projects.map((project, index) => (
           <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">

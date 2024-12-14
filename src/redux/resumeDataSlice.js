@@ -45,6 +45,21 @@ const savedResume = JSON.parse(localStorage.getItem('resume')) || {
             skill:'',
             link:''
         }
+    ],
+    workExp:[
+        {
+            companyName: "",
+            role: "", 
+            jobDesc: "", 
+            from: "", 
+            till: ""
+        }
+    ],
+    leadership:[
+        {
+            quality: "",
+            link: ""
+        }
     ]
   };
 

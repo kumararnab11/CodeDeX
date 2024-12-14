@@ -1,5 +1,6 @@
 // Import the tailwindcss-animate plugin using ES module syntax
 import tailwindcssAnimate from 'tailwindcss-animate';
+import tailwindScrollbar from 'tailwind-scrollbar';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -69,5 +70,5 @@ export default {
       },
     },
   },
-  plugins: [tailwindcssAnimate], // Use the tailwindcss-animate plugin
+  plugins: [tailwindcssAnimate,tailwindScrollbar] // Use the tailwindcss-animate plugin
 };
