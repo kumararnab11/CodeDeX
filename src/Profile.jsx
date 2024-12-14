@@ -46,6 +46,8 @@ function Profile() {
   const [isBadgeOpen, setBadgeClose] = useState(false);
   const[avatar,setAvatar]=useState(profilePic);
 
+  console.log(profilePic)
+
   return (
     <div className="w-[25%] min-w-[300px] p-4 m-2 bg-white rounded-lg shadow-lg border">
       {/* Profile Picture and Name */}
@@ -53,15 +55,14 @@ function Profile() {
         <div className='relative h-[80px]'>
           <img
             src={
-              profilePic === 0 
-                ? (platformData?.codeforces?.avatar || "https://via.placeholder.com/80") 
-                : profilePic === 1 ? avatar1
-                : profilePic === 2 ? avatar2
-                : profilePic === 3 ? avatar3
-                : profilePic === 4 ? avatar4
-                : profilePic === 5 ? avatar5
-                : profilePic === 6 ? avatar6
-                : "https://via.placeholder.com/80"
+              profilePic == 0 
+                ? (platformData?.codeforces?.avatar || avatar1) 
+                : profilePic == 1 ? avatar1
+                : profilePic == 2 ? avatar2
+                : profilePic == 3 ? avatar3
+                : profilePic == 4 ? avatar4
+                : profilePic == 5 ? avatar5
+                : avatar6
             }
           
             alt="Profile"

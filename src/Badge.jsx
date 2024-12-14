@@ -93,14 +93,13 @@ function Badge({ openBadge, onCloseBadge }) {
           <img
             src={
               profilePic === 0 
-                ? (platformData?.codeforces?.avatar || "https://via.placeholder.com/80") 
-                : profilePic === 1 ? avatar1
-                : profilePic === 2 ? avatar2
-                : profilePic === 3 ? avatar3
-                : profilePic === 4 ? avatar4
-                : profilePic === 5 ? avatar5
-                : profilePic === 6 ? avatar6
-                : "https://via.placeholder.com/80"
+                ? (platformData?.codeforces?.avatar || avatar1) 
+                : profilePic == 1 ? avatar1
+                : profilePic == 2 ? avatar2
+                : profilePic == 3 ? avatar3
+                : profilePic == 4 ? avatar4
+                : profilePic == 5 ? avatar5
+                : avatar6
             }
             alt="Profile"
             className="w-24 h-24 rounded-full"
