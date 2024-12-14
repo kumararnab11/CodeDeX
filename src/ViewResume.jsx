@@ -183,7 +183,7 @@ function ViewResume() {
               <li>
                 <a href={`https://leetcode.com/${platformData.leetcode.username}`}>
                   {`With a contest rating of `} 
-                  <span className="font-bold">{platformData.leetcode.rating}</span> 
+                  <span className="font-bold">{platformData.leetcode.rating.substr(0,4)}</span> 
                   {` solved `} 
                   <span className="font-bold">{platformData.leetcode.questions}</span> 
                   {`+ problems in `}
