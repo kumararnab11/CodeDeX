@@ -136,8 +136,31 @@ function ViewResume() {
           </div>
         </section>
 
+        {/* Work Exp Section */}
+        {toggleData.workExp &&
+        (<section className="mb-6">
+          <h2 className="text-lg font-semibold text-blue-700 border-b border-gray-300 pb-1 mb-2">
+            Work Experience
+          </h2>
+          <div className="space-y-2">
+            {resumeData.workExp.map((work, index) => (
+              <div key={index} className="flex justify-between text-sm">
+                <div>
+                  <h3 className="font-medium text-gray-800">{work.companyName}</h3>
+                  <p className="text-gray-600 italic">{work.jobDesc}</p>
+                </div>
+                <div className="text-right text-gray-500">
+                  <p>{`${work.from} - ${work.till}`}</p>
+                  <p>{work.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>)}
+
         {/* Projects Section */}
-        <section className="mb-6">
+        {toggleData.projects &&
+        (<section className="mb-6">
           <h2 className="text-lg font-semibold text-blue-700 border-b border-gray-300 pb-1 mb-2">
             Projects
           </h2>
@@ -172,10 +195,11 @@ function ViewResume() {
               </li>
             ))}
           </ul>
-        </section>
+        </section>)}
 
         {/* Achievements Section */}
-        <section className="mb-6">
+        {toggleData.achievement &&
+        (<section className="mb-6">
           <h2 className="text-lg font-semibold text-blue-700 border-b border-gray-300 pb-1 mb-2">
             Achievements
           </h2>
@@ -226,10 +250,11 @@ function ViewResume() {
               </li>
             ))}
           </ul>
-        </section>
+        </section>)}
 
         {/* Skills Section */}
-        <section>
+        {toggleData.skills &&
+        (<section>
           <h2 className="text-lg font-semibold text-blue-700 border-b border-gray-300 pb-1 mb-2">
             Skills
           </h2>
@@ -243,7 +268,22 @@ function ViewResume() {
               </li>
             ))}
           </ul>
-        </section>
+        </section>)}
+
+        {/* Leadership Section */}
+        {toggleData.leadership &&
+        (<section className="mb-6">
+          <h2 className="text-lg font-semibold text-blue-700 border-b border-gray-300 pb-1 mb-2">
+            Leadership Qualities
+          </h2>
+          <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+            {resumeData.leadership.map((leadership, index) => (
+              <li key={index}>
+                <a href={leadership.link}>{leadership.quality}</a>
+              </li>
+            ))}
+          </ul>
+        </section>)}
       </div>
     </div>
   );

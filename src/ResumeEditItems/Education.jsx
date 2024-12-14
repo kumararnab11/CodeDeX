@@ -43,6 +43,7 @@ function Education() {
           <h3 className="text-xl font-semibold mb-2 text-gray-700">High School</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input
+              required="true"
               type="text"
               name="scl"
               placeholder="School Name"
@@ -51,6 +52,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="major"
               placeholder="Major"
@@ -59,6 +61,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="marks"
               placeholder="Marks"
@@ -67,6 +70,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="board"
               placeholder="Board"
@@ -75,6 +79,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="from"
               placeholder="From Date"
@@ -83,6 +88,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="till"
               placeholder="Till Date"
@@ -98,6 +104,7 @@ function Education() {
           <h3 className="text-xl font-semibold mb-2 text-gray-700">Secondary School</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input
+              required="true"
               type="text"
               name="scl"
               placeholder="School Name"
@@ -114,6 +121,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="marks"
               placeholder="Marks"
@@ -122,6 +130,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="board"
               placeholder="Board"
@@ -138,6 +147,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="till"
               placeholder="Till Date"
@@ -153,6 +163,7 @@ function Education() {
           <h3 className="text-xl font-semibold mb-2 text-gray-700">College</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input
+              required="true"
               type="text"
               name="scl"
               placeholder="College Name"
@@ -161,6 +172,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="major"
               placeholder="Major"
@@ -169,6 +181,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="marks"
               placeholder="Marks"
@@ -177,6 +190,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="board"
               placeholder="Board"
@@ -185,6 +199,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="from"
               placeholder="From Date"
@@ -193,6 +208,7 @@ function Education() {
               className="border p-2 rounded-md w-full"
             />
             <input
+              required="true"
               type="text"
               name="till"
               placeholder="Till Date"
