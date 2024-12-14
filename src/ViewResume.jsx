@@ -95,7 +95,7 @@ function ViewResume() {
               <SiCodechef />
             </a>
             <a
-              href={`https://codeforces.com/profile/${platformData.leetcode.username}`}
+              href={`https://codeforces.com/profile/${platformData.codeforces.username}`}
               className="text-blue-600 hover:text-blue-800 text-xl"
               target="_blank"
               rel="noopener noreferrer"
@@ -193,7 +193,7 @@ function ViewResume() {
             )}
             {toggleData.codeforces && (
               <li>
-                <a href={`https://codeforces.com/profile/${platformData.leetcode.username}`}>
+                <a href={`https://codeforces.com/profile/${platformData.codeforces.username}`}>
                 <span className="font-bold">{platformData.codeforces.maxBadge}</span>
                   {`(${platformData.codeforces.maxrating}) in `}
                   <span className="text-blue-700">Codeforces</span>
