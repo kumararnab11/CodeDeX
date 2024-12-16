@@ -153,7 +153,7 @@ function Profile() {
         onCloseBadge={() => setBadgeClose(false)}
       />
 
-      {/* Alert Dialog */}
+      {/* Choose Avatar */}
       {popup && (
         <AlertDialog open={popup} onOpenChange={setPopup}>
           <AlertDialogContent>
@@ -162,7 +162,7 @@ function Profile() {
               <AlertDialogDescription>currently avatar {avatar} is selected</AlertDialogDescription>
               <div className='flex flex-row flex-wrap'>
                 <div onClick={()=>setAvatar(0)}><img src={platformData?.codeforces?.avatar||"https://via.placeholder.com/80"} alt="" /></div>
-              <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(1)}><img src={avatar1} alt="" /></div>
+                <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(1)}><img src={avatar1} alt="" /></div>
                 <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(2)}><img src={avatar2} alt="" /></div>
                 <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(3)}><img src={avatar3} alt="" /></div>
                 <div className='h-[80px] w-[80px] m-2' onClick={()=>setAvatar(4)}><img src={avatar4} alt="" /></div>

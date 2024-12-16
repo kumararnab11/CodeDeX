@@ -51,7 +51,7 @@ function ViewResume() {
       {/* Download Button */}
       <button
         onClick={handleDownload}
-        className="absolute top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
+        className="absolute top-16 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600"
       >
         <ImDownload2/>
       </button>
@@ -123,7 +123,7 @@ function ViewResume() {
             {[resumeData.clg,resumeData.hs,resumeData.sec].map((edu, index) => (
               <div key={index} className="flex justify-between text-sm">
                 <div>
-                  <h3 className="font-medium text-gray-800">{edu.scl}</h3>
+                  <h3 className="font-bold text-gray-600">{edu.scl}</h3>
                   <p className="text-gray-600 italic">{edu.major}</p>
                 </div>
                 <div className="text-right text-gray-500">
@@ -146,7 +146,7 @@ function ViewResume() {
             {resumeData.workExp.map((work, index) => (
               <div key={index} className="flex justify-between text-sm">
                 <div>
-                  <h3 className="font-medium text-gray-800">{work.companyName}</h3>
+                  <h3 className="font-bold text-gray-600">{work.companyName}</h3>
                   <p className="text-gray-600 italic">{work.jobDesc}</p>
                 </div>
                 <div className="text-right text-gray-500">
@@ -168,7 +168,7 @@ function ViewResume() {
             {resumeData.projects.map((project, index) => (
               <li key={index} className="text-sm">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-medium text-gray-800">{project.head}</h3>
+                  <h3 className="font-bold text-gray-600">{project.head}</h3>
                   <div className="flex space-x-4">
                     <a
                       href={project.link}

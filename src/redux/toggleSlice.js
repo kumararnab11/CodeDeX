@@ -6,7 +6,7 @@ const data= JSON.parse(localStorage.getItem('toggle'))||
     codeforces:false,
     codechef:false,
     gfg:false,
-    achievements:false,
+    achievement:false,
     workExp:false,
     projects:false,
     languages:false,

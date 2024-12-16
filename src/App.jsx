@@ -12,9 +12,13 @@ import Skills from './ResumeEditItems/Skills'
 import Achievements from './ResumeEditItems/Achievements'
 import Projects from './ResumeEditItems/Projects'
 import ViewResume from './ViewResume'
+import ViewResume2 from './ViewResume2'
+import ViewResume3 from './ViewResume3'
 import { useEffect, useState } from 'react'
 import WorkExp from './ResumeEditItems/WorkExp'
 import Leadership from './ResumeEditItems/Leadership'
+import ResumeTemplate from './ResumeTemplate'
+
 
 function App() {
   const [quickLinks,setQuickLinks]=useState(window.innerWidth>400);
@@ -54,7 +58,26 @@ function App() {
       {
         path: '/resume/view',
         element:
-        <ViewResume/>
+        <div>
+          <ResumeTemplate/>
+          <ViewResume/>
+        </div>
+      },
+      {
+        path: '/resume/view2',
+        element:
+        <div>
+          <ResumeTemplate/>
+          <ViewResume2/>
+        </div>
+      },
+      {
+        path: '/resume/view3',
+        element:
+        <div>
+          <ResumeTemplate/>
+          <ViewResume3/>
+        </div>
       },
       {
         path: '/resume/edit',
