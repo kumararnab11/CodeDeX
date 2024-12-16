@@ -7,6 +7,7 @@ import { ImDownload2 } from "react-icons/im";
 const ViewResume2 = () => {
   const resumeData = useSelector((state) => state.resume);
   const profileData = useSelector((state) => state.profile);
+  const platformData = useSelector((state) => state.platform);
   const toggleData = useSelector((state) => state.toggle);
 
   const contentRef = useRef(null);
@@ -46,17 +47,22 @@ const ViewResume2 = () => {
 
           {/* Details */}
           <section className="mb-6">
-            <h2 className="text-lg font-bold mb-2">DETAILS</h2>
-            <p className="text-sm flex items-center mb-1">
-              <FaMapMarkerAlt className="mr-2" /> {profileData.location || "Enter Address"}
-            </p>
-            <p className="text-sm flex items-center mb-1">
-              <FaPhone className="mr-2" /> {profileData.ph || "+123 456 789"}
-            </p>
-            <p className="text-sm flex items-center">
-              <FaEnvelope className="mr-2" /> {profileData.email || "example@gmail.com"}
-            </p>
-          </section>
+  <h2 className="text-lg font-bold mb-2">DETAILS</h2>
+  <p className="text-sm flex items-start mb-1">
+    <FaMapMarkerAlt className="mr-2 flex-shrink-0" />
+    <span className="break-all whitespace-normal">{profileData.location || "Enter Address"}</span>
+  </p>
+  <p className="text-sm flex items-start mb-1">
+    <FaPhone className="mr-2 flex-shrink-0" />
+    <span className="break-all whitespace-normal">{profileData.ph || "+123 456 789"}</span>
+  </p>
+  <p className="text-sm flex items-start">
+    <FaEnvelope className="mr-2 flex-shrink-0" />
+    <span className="break-all whitespace-normal">{profileData.email || "example@gmail.com"}</span>
+  </p>
+</section>
+
+
 
           {/* Skills */}
           {toggleData.skills && (
@@ -155,6 +161,46 @@ const ViewResume2 = () => {
                 ACHIEVEMENTS
               </h2>
               <ul className="list-disc list-inside text-sm text-gray-600">
+              {toggleData.leetcode && (
+                  <li>
+                    <a href={`https://leetcode.com/${platformData.leetcode.username}`}>
+                      {`With a contest rating of `} 
+                      <span className="font-bold">{platformData.leetcode.rating.toString().substr(0,4)}</span> 
+                      {` solved `} 
+                      <span className="font-bold">{platformData.leetcode.questions}</span> 
+                      {`+ problems in `}
+                      <span className="text-orange-500">Leetcode</span>
+                    </a>
+                  </li>
+                )}
+                {toggleData.codeforces && (
+                  <li>
+                    <a href={`https://codeforces.com/profile/${platformData.codeforces.username}`}>
+                    <span className="font-bold">{platformData.codeforces.maxBadge}</span>
+                      {`(${platformData.codeforces.maxrating}) in `}
+                      <span className="text-orange-500">Codeforces</span>
+                    </a>
+                  </li>
+                )}
+                {toggleData.codechef && (
+                  <li>
+                    <a href={`https://www.codechef.com/users/${platformData.codechef.username}`}>
+                    <span className="font-bold">{platformData.codechef.badge}</span>
+                      {`(${platformData.codechef.maxrating}) in `}
+                      <span className="text-orange-500">Codechef</span>
+                    </a>
+                  </li>
+                )}
+                {toggleData.gfg && (
+                  <li>
+                    <a href={`https://www.geeksforgeeks.org/user/${platformData.gfg.username}`}>
+                      {`Has solved `}
+                      <span className="font-bold">{platformData.gfg.questions}</span>
+                      {`+ questions in `}
+                      <span className="text-orange-500">GeekforGeeks</span>
+                    </a>
+                  </li>
+                )}
                 {resumeData.achievements.map((achievement, index) => (
                   <li key={index} className="mb-2">
                     <a href={achievement.link}>{achievement.desc}</a>

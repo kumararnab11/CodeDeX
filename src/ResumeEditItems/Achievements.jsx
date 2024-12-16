@@ -89,7 +89,7 @@ function Achievements() {
       </div>
 
       {/* Tags Section */}
-      <div className="flex space-x-4 mb-6">
+      <div className="flex space-x-4 mb-6 overflow-scroll">
         {["leetcode", "codechef", "gfg", "codeforces"].map((tag) => (
           <div key={tag} className="flex items-center">
             <button
