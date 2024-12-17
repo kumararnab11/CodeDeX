@@ -3,6 +3,10 @@
 		{
 			"source": "/gfg/:path*",
 			"destination": "https://geeks-for-geeks-api.vercel.app/:path*"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "/index.html"
 		}
 	]
 }
